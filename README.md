@@ -45,19 +45,19 @@ SlideChat serializes each input WSI into a sequence of patches, converting each 
 
 Config files are in `configs/`.
 ```bash
-xtuner train \
+NPROC_PER_NODE=${GPU_NUM} xtuner train \    #where ${GPU_NUM} is the number of GPUs
  <your config file path>  \
   --deepspeed <deepspeed config file path> \
   --work-dir <workdir path>
 
 # stage1 example
-xtuner train \
+NPROC_PER_NODE=${GPU_NUM} xtuner train \
  configs/slidechat/stage_1.py \
   --deepspeed configs/deepspeed/deepspeed_zero2.json \
   --work-dir work_dirs/stage1
 
 # stage2 example
-xtuner train \
+NPROC_PER_NODE=${GPU_NUM} xtuner train \
  configs/slidechat/stage_2.py \
   --deepspeed configs/deepspeed/deepspeed_zero2.json \
   --work-dir work_dirs/stage2
