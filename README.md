@@ -45,24 +45,24 @@ SlideChat serializes each input WSI into a sequence of patches, converting each 
 
 Config files are in `configs/`.
 ```bash
-xtuner train \
+NPROC_PER_NODE=${GPU_NUM} xtuner train \
  <your config file path>  \
   --deepspeed <deepspeed config file path> \
   --work-dir <workdir path>
 
 # stage1 example
-xtuner train \
+NPROC_PER_NODE=${GPU_NUM} xtuner train \
  configs/slidechat/stage_1.py \
   --deepspeed configs/deepspeed/deepspeed_zero2.json \
   --work-dir work_dirs/stage1
 
 # stage2 example
-xtuner train \
+NPROC_PER_NODE=${GPU_NUM} xtuner train \
  configs/slidechat/stage_2.py \
   --deepspeed configs/deepspeed/deepspeed_zero2.json \
   --work-dir work_dirs/stage2
 ```
-
+Where ${GPU_NUM} is the number of GPUs
 
 For a detailed explanation of the configuration file, please refer [**here**](https://xtuner.readthedocs.io/zh-cn/latest/training/modify_settings.html).
 - `llm_name_or_path`: The parameter `llm_name_or_path` corresponds to the Hugging Face LLM path, such as `internlm/internlm2-chat-7b` or `Qwen/Qwen2.5-7B-Instruct` and so on.
