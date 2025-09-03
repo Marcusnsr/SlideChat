@@ -26,6 +26,8 @@ Before open‑sourcing, SlideBench‑VQA‑TCGA underwent a second round of expe
 This project is built upon [**Xtuner**](https://github.com/InternLM/xtuner). To get started:
 
 ```bash
+conda create --name xtuner-env python=3.10 -y
+conda activate xtuner-env
 git clone https://github.com/uni-medical/SlideChat.git
 cd SlideChat
 pip install -e .
