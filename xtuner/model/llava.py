@@ -277,7 +277,7 @@ class LLaVAModel(BaseModel):
             cfg.torch_dtype = torch_dtype
             cfg.attn_implementation = 'flash_attention_2'
         elif SUPPORT_FLASH1 and cls_name in SUPPORT_SDPA_ATTN:
-            cfg.attn_implementation = 'sdpa'
+            cfg['attn_implementation'] = 'sdpa'
 
         return cfg, llm_cfg
 
@@ -300,7 +300,7 @@ class LLaVAModel(BaseModel):
 
     def _dispatch_lm_model_cfg(self, cfg, max_position_embeddings=None):
         cfg = self._prepare_for_qlora_zero3(cfg)
-        pretrained_model_name_or_path = cfg.pretrained_model_name_or_path
+        pretrained_model_name_or_path = cfg["pretrained_model_name_or_path"]
         llm_cfg = AutoConfig.from_pretrained(
             pretrained_model_name_or_path, trust_remote_code=True)
         cfg, llm_cfg = self._prepare_for_flash_attn(cfg, llm_cfg)
